@@ -31,6 +31,8 @@ var checkCmd = &cobra.Command{
 		}
 
 		f := excelize.NewFile()
+		var cell int
+		cell = 2
 
 		for _, host := range nessus.Report.ReportHosts {
 
@@ -54,9 +56,6 @@ var checkCmd = &cobra.Command{
 			println(host.Name)
 			println("host-ip: " + hostIP)
 
-			var cell int
-			cell = 2
-
 			for index, finding := range host.ReportItems {
 				// Converst pluginID string to int
 				intPluginID, err := strconv.Atoi(finding.PluginID)
@@ -68,9 +67,6 @@ var checkCmd = &cobra.Command{
 				_, foundPlugin := FindID(excludePlugins, intPluginID)
 				if foundPlugin {
 					fmt.Println("Plugin excluded: " + finding.PluginID)
-					continue
-				}
-				if finding.RiskFactor == "None" {
 					continue
 				}
 				// <ReportItem port="3389" svc_name="msrdp" protocol="tcp" severity="0" pluginID="10863" pluginName="SSL Certificate Information" pluginFamily="General">
