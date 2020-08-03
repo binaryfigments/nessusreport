@@ -1,0 +1,9 @@
+exclude:
+  hosts:
+    - "127.0.0.1"
+    - "10.29.88.0"
+  plugins:
+    - 123
+    - 57582
+
+author: "Sebastian Broekhoven"
